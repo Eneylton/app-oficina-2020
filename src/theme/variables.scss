@@ -34,11 +34,11 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:    #af0c66,
+  secondary:  #570434,
+  danger:     #bff304,
+  light:      #117c9c,
+  dark:       rgb(255, 0, 0)
 );
 
 
@@ -84,5 +84,36 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+//@import "roboto";
+//@import "noto-sans";
+
+@font-face{
+  font-family: 'buda';
+  font-style: 'bold';
+  font-weight: '400';
+src: url(../assets/fonts/LibreBarcodeEAN13Text-Regular.ttf);
+}
+
+$font-family-base2: "buda";
+
+h1,h2,h3,h4,input,a,p,button,ion-title,span,ion-option {
+
+  font-family: "buda" !important;
+}
+
+
+@font-face{
+  font-family: 'Open Sans';
+  font-style: 'bold';
+  font-weight: '400';
+src: url(../assets/fonts/BarlowCondensed-Regular.ttf);
+}
+
+$font-family-base: "Open Sans";
+
+h1,h2,h3,h4,input,a,p,button,ion-title,span,ion-option {
+
+  font-family: "Open Sans" !important;
+}
+
+

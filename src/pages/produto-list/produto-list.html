@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">Produtos</ion-title>
+
+    <ion-searchbar placeholder="Pesquisar" *ngIf="isSearchbarOpened" showCancelButton="true" 
+                   (ionCancel)="isSearchbarOpened=false"
+                   (ionInput)="getProdutos($event)">
+                   </ion-searchbar>
+    <ion-buttons end>
+
+      <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+
+        <ion-icon name="search"></ion-icon>
+      </button>
+
+      <button ion-button icon-only (click)="adicionar()">
+
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+
+    </ion-refresher-content>
+
+  </ion-refresher>
+
+
+  <ion-list style="margin-top: 20px;">
+    <ion-item-sliding *ngFor="let item Of produtos " >
+
+       
+      <ion-item>
+        <ion-avatar item-start>
+                  <img *ngIf="item.foto == ''" src="../../assets/imgs/sem-img.png" >
+                  <img *ngIf="item.foto != ''" src="{{url+item.foto}}" >
+        </ion-avatar>
+      
+        <h2 style="font-size:large">{{item.cat}} {{item.fab}}</h2>
+        <h4  style="font-size:small">{{item.marca}} - {{item.modelo}}</h4>
+        <p>Quantidade: {{item.qtd}} <span style=" font-weight:400; color: rgb(6, 233, 6);">em estoque</span></p>
+        <h3 item-end style="color: rgb(185, 62, 144);">{{item.valor_venda | currency: 'BRL'}}</h3>
+        <ion-icon style="color: rgb(119, 18, 94);" item-end name="ios-arrow-forward"></ion-icon>
+      </ion-item>
+      
+      
+      <ion-item-options side="left">
+
+        <button ion-button color="light" (click)="detalhe(item.id,
+                                                          item.ref,
+                                                          item.codigo,
+                                                          item.barra,
+                                                          item.cat,
+                                                          item.fab,
+                                                          item.modelo,
+                                                          item.marca,
+                                                          item.foto,
+                                                          item.valor_compra,
+                                                          item.valor_venda,
+                                                          item.aplicacao,
+                                                          item.qtd
+                                                        )">
+                                                        <i style="font-size: xx-large; padding: 6px;" class="fas fa-images"></i>
+        </button>
+
+      </ion-item-options>
+
+      <ion-item-options side="right">
+
+
+        <button ion-button color="danger" (click)="editar(item.id,
+                                                          item.codigo,
+                                                          item.ref,
+                                                          item.barra,
+                                                          item.cat_id,
+                                                          item.marca_id,
+                                                          item.fab_id,
+                                                          item.mod_id,
+                                                          item.cat,
+                                                          item.fab,
+                                                          item.modelo,
+                                                          item.foto,
+                                                          item.valor_compra,
+                                                          item.valor_venda,
+                                                          item.aplicacao,
+                                                          item.qtd
+                                                        
+                                                        )">
+                                                        <i  style="font-size: x-large; padding: 5px;" class="fas fa-recycle"></i>
+        </button>
+
+
+        <button ion-button color="dark" (click)="delete(item.id)" >
+          <i style="font-size: x-large; padding: 5px;" class="fas fa-trash-alt"></i>
+        </button>
+
+      </ion-item-options>
+
+
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="CARREGANDO...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

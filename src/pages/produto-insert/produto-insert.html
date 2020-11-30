@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Produto</ion-title>
+    <ion-buttons end>
+
+      <button ion-button icon-only (click)="cadastrar()">
+  
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+  
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+
+        <ion-list>
+          <ion-item>
+            <img style="max-width: 70%; margin-left: 40px;" src="../../assets/imgs/sem-foto.jpg"
+              *ngIf="base64Image == ''">
+            <img style="max-width: 70%; margin-left: 50px;" src="{{base64Image}}" *ngIf="base64Image != ''">
+            <div>
+              <button ion-button block (click)="presentActionSheet()" color="danger">Upload</button>
+            </div>
+
+          </ion-item>
+        </ion-list>
+
+        <ion-item>
+       
+        <ion-input placeholder="Código" [(ngModel)]="codigo" type="text"></ion-input>
+       
+        </ion-item>
+        
+        <ion-item>
+          
+          <ion-input placeholder="Código de Barras" [(ngModel)]="barra" type="text"></ion-input>
+		 
+        </ion-item>
+
+        <ion-item>
+          <ion-input placeholder="Referência" [(ngModel)]="referencia" type="text"></ion-input>
+        </ion-item>
+
+        
+        <ion-item>
+       
+          <ion-input placeholder="Valor de Compra" [(ngModel)]="valor_compra" type="text"></ion-input>
+         
+        </ion-item>
+
+        <ion-item>
+       
+          <ion-input placeholder="Valor de Venda" [(ngModel)]="valor_venda" type="text"></ion-input>
+         
+        </ion-item>
+
+        <ion-item>
+       
+          <ion-input placeholder="Aplicação" [(ngModel)]="aplicacao" type="text"></ion-input>
+         
+        </ion-item>
+        <ion-item>
+       
+          <ion-input placeholder="Quantidade" [(ngModel)]="qtd" type="text"></ion-input>
+         
+        </ion-item>
+
+        <ion-item>
+          <ion-label style="font-size: 16px; margin-left: 9px; font-family:Open Sans;">Categoria</ion-label>
+          <ion-select [(ngModel)]="categoria_id">
+            <ion-option *ngFor="let item of categorias; Index as i" [selected]="i" value="{{item.id}}">
+              <h3 style="font-size: 16px; margin-left: 9px; font-family:Open Sans !important;"> {{item.descricao}} </h3></ion-option>
+          </ion-select>
+        </ion-item>  
+
+        <ion-item>
+          <ion-label style="font-size: 16px; margin-left: 9px; font-family:Open Sans;">Marca</ion-label>
+          <ion-select [(ngModel)]="marca_id" (ionChange)="listarModelo()">
+            <ion-option *ngFor="let item of marcas"  value="{{item.id}}">{{item.descricao}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label style="font-size: 16px; margin-left: 9px; font-family:Open Sans;">Veículo</ion-label>
+          <ion-select [(ngModel)]="modelo_id">
+            <ion-option *ngFor="let item of modelos" value="{{item.id}}">{{item.descricao}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label style="font-size: 16px; margin-left: 9px; font-family:Open Sans;">Fabricante</ion-label>
+          <ion-select [(ngModel)]="fabricante_id">
+            <ion-option *ngFor="let item of fabricantes" value="{{item.id}}">{{item.descricao}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

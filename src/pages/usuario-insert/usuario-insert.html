@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Usuários</ion-title>
+    <ion-buttons end>
+
+      <button ion-button icon-only  (click)="cadastrar()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+ 
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-input placeholder="Nome" [(ngModel)]="nome" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Email" [(ngModel)]="email" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Usuario" [(ngModel)]="usuario" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Senha"   [(ngModel)]="senha" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Confirmar" [(ngModel)]="confirmar" type="password"></ion-input>
+        </ion-item>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
